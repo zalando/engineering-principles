@@ -49,6 +49,7 @@ A service:
 - should not share its data storage or code repository with any other service, so that changes do not affect other systems.
 should not share libraries with other services, unless those libraries are open-source. Shared internal dependencies lead to a large-scale complexity over time. We prefer to stop this practice immediately.
 - should not provide a client library. The core API and its data model are expressed as REST and JSON.
+
 ###APIs
 Our APIs form the purest expression of what our systems do. But API design is hard work and takes time. We prefer peer-reviewed, API First APIs designed and developed outside code (using Swagger, for example), to avoid the complexity and cost of making big changes. We prefer ongoing documentation to be generated from the code itself.
 
