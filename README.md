@@ -122,3 +122,15 @@ Peer review gets easier when you have a good attitude about it. Everybody around
 Depending on the team and its codebases, it might be required that at least one person reviews code before it goes live. This is especially true for systems that touch customer or financial data. In general, though, we don’t want to focus about when code review is or isn’t required: The system works best when people decide on their own that code review is valuable, and seek it out. 
 
 Architectural decisions should be made as a team, and the team should ask for help if it’s unsure. Ask your Delivery Lead, People Lead, and/or Engineering Head, or even experts from other teams (if it makes sense). Embrace open discussions and alternate opinions.
+
+####Quality
+Quality is related to mindset, and it’s part of engineering. Systems that support multi-billion-Euro companies must be engineered for high quality. Usually this means:
+- writing unit tests early on
+mocking external systems so you can test against them while they’re not running, and also so that you can simulate various - failure scenarios from the service and the network between it
+- striving for automation
+
+Automate testing whenever possible. It’s not always possible, but life is almost always better if you invest in automated tests of your code. (See Martin Fowler's [Testing Strategies in a Microservice Architecture](http://martinfowler.com/articles/microservice-testing/).) 
+
+We’re not going to require you to test your code, but expect your peers to challenge you if you don’t. For the most part, a dedicated QA team is a thing of the past. You and your team are responsible for your code’s behavior: There’s no other safety net.
+
+Years ago, we didn’t build systems this way. Now we must. Fortunately, the tooling is pretty amazing. 
