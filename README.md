@@ -2,14 +2,14 @@ Zalando Tech's Rules of Play
 ========================================
 
 ###TL;DR
-As part of[Radical Agility](https://tech.zalando.com/blog/so-youve-heard-about-radical-agility...-video/), implemented by Zalando's technology team in March 2015, we have adopted this set of "Rules of Play":
+As part of [Radical Agility](https://tech.zalando.com/blog/so-youve-heard-about-radical-agility...-video/), implemented by Zalando's technology team in March 2015, we have adopted this set of "Rules of Play":
 - microservices
 - API First
 - REST
 - Cloud
 - Software as a Service (SaaS)
 
-This document focuses primarily on services, because the principles for interoperating between services are quite mature and stable. 
+The following describes these five points in greater detail—focusing  primarily on services, as the principles for interoperating between services are quite mature and stable. 
 
 **A note before we begin**: A service is an application—but not all applications are services. For example, a frontend is not a service. Its requirements are fundamentally harder to meet because of aesthetic and user experience concerns. And the fast-moving set of technologies around the browser bring less maturity and more complexity.
 
