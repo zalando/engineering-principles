@@ -9,7 +9,7 @@ As part of [Radical Agility](https://tech.zalando.com/blog/so-youve-heard-about-
 - Cloud
 - Software as a Service (SaaS)
 
-The following describes these five points in greater detail—focusing  primarily on services, as the principles for interoperating between services are quite mature and stable. 
+This document focuses primarily on services, as the principles for interoperating between services are quite mature and stable. 
 
 **A note before we begin**: A service is an application—but not all applications are services. For example, a frontend is not a service. Its requirements are fundamentally harder to meet because of aesthetic and user experience concerns. And the fast-moving set of technologies around the browser bring less maturity and more complexity.
 
