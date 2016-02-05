@@ -50,22 +50,25 @@ A service:
 should not share libraries with other services, unless those libraries are open-source. Shared internal dependencies lead to a large-scale complexity over time. We prefer to stop this practice immediately.
 - should not provide a client library. The core API and its data model are expressed as REST and JSON.
 
-###APIs
+####APIs
 Our APIs form the purest expression of what our systems do. But API design is hard work and takes time. We prefer peer-reviewed, API First APIs designed and developed outside code (using Swagger, for example), to avoid the complexity and cost of making big changes. We prefer ongoing documentation to be generated from the code itself.
 
 Our APIs need to last for a long time, so they must evolve in certain ways. Our APIs should all be similar in tone; we establish and agree to standards for how to do this. We will host API documentation for all our APIs in a central, searchable place. Documentation should always provide examples.
 
 Our APIs should obey [Postel's Law—aka "the Robustness Principle"](https://en.wikipedia.org/wiki/Robustness_principle): Be conservative in what you send, be liberal in what you accept.
 
-###Some Good Reads: 
+####Some Good Reads: 
 - [Architectural Styles and the Design of Network-based Software Architectures](https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm)
-InfoQ eMag: Web APIs: From Start to Finish
-Thoughts on RESTful API Design
-Build APIs You Won't Hate
-SaaS
+- [InfoQ eMag: Web APIs: From Start to Finish](www.infoq.com/minibooks/emag-web-api)
+- [Thoughts on RESTful API Design](https://restful-api-design.readthedocs.org/en/latest/)
+- [Build APIs You Won't Hate](https://leanpub.com/build-apis-you-wont-hate)
+
+####SaaS
 Build your services so that it’s possible to offer them as a SaaS solution to third parties. In fact, consider any other system a third party with regards to API structure, resilience and service level. This is easier to do than it was a few years ago: AWS pushes us this way, the Internet model scales, and our security model is geared toward allowing our services to be on the open Internet. 
 
 We want to offers services in ways we never imagined or expected. This is part of being a platform. In some cases, this means being multi-tenant from the start.
-Security
+
+####Security
 Always use SSL and make sure the caller of your service is authenticated and authorized.  
-General guidelines
+
+###General guidelines
