@@ -149,3 +149,39 @@ Document the architecture of your APIs and applications. Make it clear, concise,
 ####Open Source
 We encourage an “[Open Source First](https://tech.zalando.com/blog/zalando-techs-new-open-source-principles/)” approach to software development. [Here](https://github.com/zalando/zalando-howto-open-source) is a detailed guide to open-sourcing projects at Zalando. 
 
+###Deployment
+####Cloud vs. On-Premise
+We recommend using AWS for new projects to more easily take advantage of immutable instances, canary testing and autoscaling. It’s your call, though; we will continue to support our own infrastructure.
+
+####Docker
+Our deployment platform is Docker. [STUPS.io](http://stups.io/) ensures traceability of changes by using a standard way of deploying with Docker, and provides a convenient and audit-compliant Platform-as-a-Service (PaaS) for multiple autonomous teams on top of AWS. 
+
+We know that Docker won’t last forever, and if you need to go beyond Docker, it’s possible. Have a good reason for going *off piste*, expect more work to make it happen, and don’t expect another team to support you. 
+
+####Monitoring and Logging
+We provide AppDynamics for every service. It includes monitoring as well as log management. 
+
+We also use [ZMON](https://zmon.io/), our own open-source monitoring solution, to track business KPIs and other metrics.
+
+###Managing legacy
+In transitioning to a microservices architecture, we must maintain and transform our legacy applications. Take following guidelines into account.
+
+####Reduce focus on sprocs
+Sprocs are stored procedures. For us they have been a crucial component for scaling PostgreSQL horizontally. They are not, however, the right solution for every database problem. 
+
+Sprocs bring a lot of power, but also introduce a lot of complexity—particularly around testing, maintainability, refactoring, and transparency. Sometimes this is worth it, particularly when we have to shard. But this approach should be used only if circumstances genuinely warrant it.
+
+####New functionality becomes a new service
+When introducing new functionality, think of designing it as a new service instead of adding it to an existing legacy application. This allows you to leverage new technologies.
+
+####Wrap it with Docker
+Use Docker to package your application. STUPS.io will help you to deploy your Docker images to the existing infrastructure.
+
+####Migration to AWS
+Move legacy code to AWS whenever possible. Sometimes it will seem hard, but others here have done it. Ask for help.
+
+###Closing Words
+####The Joy of Programming
+The authors love code. Building simple systems that work efficiently and quickly brings us joy. Seeing these systems interoperate cleanly and harmoniously gives us pleasure. We do this because we love it. If we didn’t have to work, we’d probably still do this. And we know we’re not alone. 
+
+Building software systems can produce substantial existential pleasure. When the conditions are just right, programming is a reliable path to Flow: a state almost beyond pleasure. We want to get there, and stay there, and we want you to join us there. We hope these principles help.
