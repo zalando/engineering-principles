@@ -31,7 +31,7 @@ Synchronous calls to remote systems can lead to threads in waiting state until t
 
 We reduce the impact of remote failures by calling them asynchronously. We achieve this by choosing an **event-driven architecture** based on queues (typically wrapped by REST interfaces). Communication with other systems becomes non-blocking. While functionality might be compromised, the system continues working.
 ####Service Degradation
-We react to remote dependency failures by degrading a service until the remote dependency is working again. This means that your system must be aware of remote dependency health. It needs to detect failure, and it needs to notice when an external dependency becomes healthy again.
+We react to remote dependency failures by degrading a service until the remote dependency is working again. This means that your system must be aware of remote dependency health. It needs to detect failure and also notice when an external dependency becomes healthy again.
 ####Use Low-Tech Coupling
 Low-tech coupling reduces issues resulting from changes in communicating systems, and can reduce complexity and dependencies. An example of low-tech coupling is service discovery via DNS. Communication should be done over interoperable protocols like HTTP instead of, for example, RMI.
 ####REST and JSON
