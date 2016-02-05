@@ -57,8 +57,8 @@ Our APIs need to last for a long time, so they must evolve in certain ways. Our 
 
 Our APIs should obey [Postel's Law—aka "the Robustness Principle"](https://en.wikipedia.org/wiki/Robustness_principle): Be conservative in what you send, be liberal in what you accept.
 
-Some Good Reads: 
-    Architectural Styles and the Design of Network-based Software Architectures
+###Some Good Reads: 
+- [Architectural Styles and the Design of Network-based Software Architectures](https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm)
 InfoQ eMag: Web APIs: From Start to Finish
 Thoughts on RESTful API Design
 Build APIs You Won't Hate
