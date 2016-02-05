@@ -81,3 +81,9 @@ Strive for immutability whenever possible. This is a key concept from [Effective
 Immutability tends to result in fewer bugs and makes it easier to prove a program correct. Immutable things are automatically thread-safe, with no synchronization required.
 
 ####Idempotent
+Whenever possible and reasonable, make service endpoints [idempotent](https://en.wikipedia.org/wiki/Idempotence#Computer_science_meaning) so that an operation produces the same results whether it’s executed just once or multiple times. 
+
+In distributed systems, things fail in different ways. When a client sees a failure, it might be because the core call has failed; the failure might have occurred in the network late in the process. It’s helpful if a client can try again, even for stateful operations. This can have significant impacts: For example, it might mean that the client should generate a unique id when putting new data into a service endpoint, rather than relying on the service to do it. This might imply that the calling client needs to be able to [generate a UUID](https://www.npmjs.com/package/uuid).
+
+###Development
+Some general guidelines for how we think a development team should work.
