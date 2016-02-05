@@ -184,4 +184,4 @@ Move legacy code to AWS whenever possible. Sometimes it will seem hard, but othe
 ####The Joy of Programming
 The authors love code. Building simple systems that work efficiently and quickly brings us joy. Seeing these systems interoperate cleanly and harmoniously gives us pleasure. We do this because we love it. If we didn’t have to work, we’d probably still do this. And we know we’re not alone. 
 
-Building software systems can produce substantial existential pleasure. When the conditions are just right, programming is a reliable path to Flow: a state almost beyond pleasure. We want to get there, and stay there, and we want you to join us there. We hope these principles help.
+Building software systems can produce substantial existential pleasure. When the conditions are just right, programming is a reliable path to [Flow](https://en.wikipedia.org/wiki/Flow_%28psychology%29): a state almost beyond pleasure. We want to get there, and stay there, and we want you to join us there. We hope these principles help.
