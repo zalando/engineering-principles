@@ -35,7 +35,7 @@ We react to remote dependency failures by degrading a service until the remote d
 ####Use Low-Tech Coupling
 Low-tech coupling reduces issues resulting from changes in communicating systems, and can reduce complexity and dependencies. An example of low-tech coupling is service discovery via DNS. Communication should be done over interoperable protocols like HTTP instead of, for example, RMI.
 ####REST and JSON
-Because of their weak type system, we prefer REST-based APIs with JSON payloads to SOAP and its strong type system. We prefer systems to be truly RESTful (including HATEOS), not just JSON RPC, because the goals of REST match ours: to build interoperating distributed systems that can be evolved in parallel by different teams while continuing to work.
+Because of their weak type system, we prefer REST-based APIs with JSON payloads to SOAP and its strong type system. We prefer systems to be truly RESTful (including HATEOAS), not just JSON RPC, because the goals of REST match ours: to build interoperating distributed systems that can be evolved in parallel by different teams while continuing to work.
 
 REST makes it possible to evolve APIs safely and without breaking them, and it brings high-level simplicity across all our APIs.
 
