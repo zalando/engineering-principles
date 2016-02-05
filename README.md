@@ -134,3 +134,18 @@ Automate testing whenever possible. It’s not always possible, but life is almo
 We’re not going to require you to test your code, but expect your peers to challenge you if you don’t. For the most part, a dedicated QA team is a thing of the past. You and your team are responsible for your code’s behavior: There’s no other safety net.
 
 Years ago, we didn’t build systems this way. Now we must. Fortunately, the tooling is pretty amazing. 
+
+####Continuous Delivery
+Strive for very short release cycles, optimally deploying daily; automating the delivery pipeline makes this possible. Small releases tend to have fewer bugs. Use canary testing for your new deployments to identify problems early.
+
+Best practices for Continuous Delivery and Jenkins-as-a-Service are available for voluntary usage.
+
+####Source Code Management
+We support Stash and GitHub as SCM to check in your code. You might want to use local git hooks for checking references to specifications in commit messages or checks.
+
+####Documentation
+Document the architecture of your APIs and applications. Make it clear, concise, and current. Use inline documentation for more complex code fragments. 
+
+####Open Source
+We encourage an “[Open Source First](https://tech.zalando.com/blog/zalando-techs-new-open-source-principles/)” approach to software development. [Here](https://github.com/zalando/zalando-howto-open-source) is a detailed guide to open-sourcing projects at Zalando. 
+
