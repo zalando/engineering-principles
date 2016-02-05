@@ -115,4 +115,10 @@ Don’t wait until you’re done to ask for code review: It’s the best way to 
 
 Code review is expensive in some ways, so get the most out of it. Reviewing code is a great way to learn about style, get help with idioms, and grow as a programmer and reviewer.
 
-Code review can be hard when the culture around it isn’t supportive and constructive. It takes practice to learn how to accept code reviews without getting defensive, and to review code without focusing on trivial things. Don’t [bike shed](https://en.wikipedia.org/wiki/Law_of_triviality).
+Code review can be hard when the culture around it isn’t supportive and constructive. It takes practice to learn how to accept code reviews without getting defensive, and to review code without focusing on trivial things. Don’t [bike shed](https://en.wikipedia.org/wiki/Law_of_triviality). 
+
+Peer review gets easier when you have a good attitude about it. Everybody around you is smart, and you are smart. We’re all smart in different ways.
+
+Depending on the team and its codebases, it might be required that at least one person reviews code before it goes live. This is especially true for systems that touch customer or financial data. In general, though, we don’t want to focus about when code review is or isn’t required: The system works best when people decide on their own that code review is valuable, and seek it out. 
+
+Architectural decisions should be made as a team, and the team should ask for help if it’s unsure. Ask your Delivery Lead, People Lead, and/or Engineering Head, or even experts from other teams (if it makes sense). Embrace open discussions and alternate opinions.
