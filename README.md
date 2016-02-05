@@ -76,7 +76,7 @@ Always use SSL and make sure the caller of your service is authenticated and aut
 When possible, be stateless. If you can’t, keep state separate from application logic. For example, use a separate database instead of, say, writing to a file.
 
 ####Immutable
-Strive for immutability whenever possible. This is a key concept from Effective Java, and languages like Scala and Clojure have stronger support for this than Java. (See Does Scala == Effective Java?) 
+Strive for immutability whenever possible. This is a key concept from [Effective Java](http://www.amazon.com/Effective-Java-Edition-Joshua-Bloch/dp/0321356683), and languages like Scala and Clojure have stronger support for this than Java. (See [Does Scala == Effective Java?](http://www.grahamlea.com/2013/12/does-scala-equal-effective-java/)) 
 
 Immutability tends to result in fewer bugs and makes it easier to prove a program correct. Immutable things are automatically thread-safe, with no synchronization required.
 
