@@ -76,7 +76,7 @@ Build your services so that it’s possible to offer them as a SaaS solution to 
 We want to offers services in ways we never imagined or expected. This is part of being a platform. In some cases, this means being multi-tenant from the start.
 
 ####Security
-Always use SSL and make sure the caller of your service is authenticated and authorized.  
+Always use SSL and make sure the caller of your service is authenticated and authorized. SSL actually means "HTTPS everywhere, not HTTP."  
 
 ###General guidelines
 ####Stateless
