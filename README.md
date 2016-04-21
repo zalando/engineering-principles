@@ -4,7 +4,7 @@ Zalando Tech's Rules of Play
 ####The Rules, Briefly
 As part of [Radical Agility](https://tech.zalando.com/blog/so-youve-heard-about-radical-agility...-video/), implemented by Zalando's technology team in March 2015, we have adopted this set of "Rules of Play":
 - microservices
-- API First
+- [API First](https://zalando.github.io/restful-api-guidelines/index.html)
 - REST
 - Cloud
 - Software as a Service (SaaS)
@@ -35,11 +35,11 @@ We react to remote dependency failures by degrading a service until the remote d
 ####Use Low-Tech Coupling
 Low-tech coupling reduces issues resulting from changes in communicating systems, and can reduce complexity and dependencies. An example of low-tech coupling is service discovery via DNS. Communication should be done over interoperable protocols like HTTP instead of, for example, RMI.
 ####REST and JSON
-Because of their weak type system, we prefer REST-based APIs with JSON payloads to SOAP and its strong type system. We prefer systems to be truly RESTful (including HATEOAS), not just JSON RPC, because the goals of REST match ours: to build interoperating distributed systems that can be evolved in parallel by different teams while continuing to work.
+Because of their weak type system, we prefer REST-based APIs with JSON payloads to SOAP and its strong type system. We prefer systems to be truly RESTful (including HATEOAS), not just JSON RPC, because the goals of REST match ours: to build interoperating distributed systems that can be evolved in parallel by different teams while continuing to work. 
 
 REST makes it possible to evolve APIs safely and without breaking them, and it brings high-level simplicity across all our APIs.
 
-[The API Guild](https://tech.zalando.com/blog/on-apis-and-the-zalando-api-guild/) provides structure around the details of our API strategy.
+[The API Guild](https://tech.zalando.com/blog/on-apis-and-the-zalando-api-guild/) provides structure around the details of our API strategy. In April 2016, Guild members released this comprehensive model set of [RESTful API guidelines](https://zalando.github.io/restful-api-guidelines/TOC.html), which define standards to successfully establish “consistent API look and feel” quality.
 ###How to structure your services
 Build services around business entities with state and behavior—for examples, “orders,” “payments,” or “prices.” In REST terms, these are “resources.”  
 ####Service size
