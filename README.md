@@ -108,10 +108,6 @@ We prefer that all or most work is done around some kind of conceptual “projec
 
 Having a first-class, cross-team notion of “project” is nice for a lot of reasons. It ultimately helps us to build automation that makes the overhead around auditing and controlling processes as minimal as possible.
 
-####Ticketing
-We suggest using a ticketing system. Which one you use doesn’t matter, just pick one: JIRA, GitHub, etc. Postcards on the wall probably aren’t enough: Ticket information needs to be captured and stored for later. 
-
-Tickets should refer to the project that covers the work done. Checkin comments should refer to tickets.
 
 ####No Micromanagement
 If you feel like you’re being micromanaged, push back. We don’t do that here. On the other hand, it’s fine to ask for detailed support. When you ask for it, it’s not micromanagement, and sometimes it’s fine to ask. But it shouldn’t ever come as unwanted.
