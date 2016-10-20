@@ -69,7 +69,7 @@ Our APIs should obey [Postel's Law—aka "the Robustness Principle"](https://en.
 ####Some Good Reads: 
 - [RESTful API Guidelines](https://zalando.github.io/restful-api-guidelines/TOC.html) by Zalando's API Guild
 - [Architectural Styles and the Design of Network-based Software Architectures](https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm)
-- [InfoQ eMag: Web APIs: From Start to Finish](www.infoq.com/minibooks/emag-web-api)
+- [InfoQ eMag: Web APIs: From Start to Finish](https://www.infoq.com/minibooks/emag-web-api)
 - [Thoughts on RESTful API Design](https://restful-api-design.readthedocs.org/en/latest/)
 - [Build APIs You Won't Hate](https://leanpub.com/build-apis-you-wont-hate)
 
