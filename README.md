@@ -1,4 +1,4 @@
-Zalando' Architecture Principles
+Zalando's Architecture Principles
 ========================================
 
 ####The Principles, Briefly
