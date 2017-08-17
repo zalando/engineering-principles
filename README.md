@@ -4,12 +4,15 @@ Zalando's Engineering and Architecture Principles
 #### The Principles, Briefly
 As part of [Radical Agility](https://tech.zalando.com/blog/so-youve-heard-about-radical-agility...-video/), implemented by Zalando's technology team in March 2015, we have adopted this set of principles for tech and architecture:
 - microservices
-- [API First](https://zalando.github.io/restful-api-guidelines/)
+- API First
 - REST
 - Cloud
 - Software as a Service (SaaS)
 
-This document focuses primarily on services, as the principles for interoperating between services are quite mature and stable. Note: A service is an application, but not all applications are services. For example, a frontend is not a service. Its requirements are fundamentally harder to meet because of aesthetic and user experience concerns. And the fast-moving set of technologies around the browser bring less maturity and more complexity.
+This document focuses primarily on services, as the principles for interoperating services are quite mature 
+and stable. Note: A (micro-) service is an application, but not all applications are services. For example, a frontend 
+is not a service. Its requirements are fundamentally harder to meet because of aesthetic and user experience concerns. 
+And the fast-moving set of technologies around the browser bring less maturity and more complexity.
 
 Starting from Scratch
 ------------------------------------------------------------
@@ -38,14 +41,26 @@ We react to remote dependency failures by degrading a service until the remote d
 #### Use Low-Tech Coupling
 Low-tech coupling reduces issues resulting from changes in communicating systems, and can reduce complexity and dependencies. An example of low-tech coupling is service discovery via DNS. Communication should be done over interoperable protocols like HTTP instead of, for example, RMI.
 
-#### REST and JSON
+#### RESTful APIs with JSON payload
 We prefer REST-based APIs with JSON payloads to SOAP. Distributed SOAs following the REST style have a looser coupling
 between client and server implementations and comes with less rigid client/server contracts that do not break if either
 side make certain changes. Hence it is easier to build interoperating distributed systems that can be evolved in parallel
 by different teams while continuing to work. REST-like APIs with JSON payload is the most widely accepted and used service
 interfacing style in the internet web service industry.
 
-[The API Guild](https://tech.zalando.com/blog/on-apis-and-the-zalando-api-guild/) provides structure around the details of our API strategy. In April 2016, Guild members released this comprehensive model set of [RESTful API guidelines](http://zalando.github.io/restful-api-guidelines/), which define standards to successfully establish “consistent API look and feel” quality.
+#### API First
+The [API Guild](https://tech.zalando.com/blog/on-apis-and-the-zalando-api-guild/) provides structure around the 
+details of our API strategy. In April 2016, Guild members released this comprehensive model set 
+of [RESTful API guidelines](http://zalando.github.io/restful-api-guidelines/), 
+which define standards to successfully establish “consistent API look and feel” quality.
+
+We also adopted ["API First"](https://zalando.github.io/restful-api-guidelines/general-guidelines/GeneralGuidelines.html) 
+and ["API as a Product"](https://zalando.github.io/restful-api-guidelines/design-principles/DesignPrinciples.html) 
+as key engineering principles. In a nutshell, API First encompasses a set of quality-related standards 
+(including the API guidelines and tooling) and fosters a peer review culture; it requires two aspects:
+
+- define APIs outside the code first using a standard specification language (Open API 2.0, fka Swagger)
+- get early review feedback from peers and client developers (following a lightweight [API review procedure](https://pages.github.bus.zalan.do/ApiGuild/ApiReviewProcedure/))
 
 ### How to structure your services
 Build services around business entities with state and behavior—for examples, “orders,” “payments,” or “prices.” In REST terms, these are “resources.”  
