@@ -9,9 +9,9 @@ As part of [Radical Agility](https://jobs.zalando.com/tech/blog/so-youve-heard-a
 - Cloud
 - Software as a Service (SaaS)
 
-This document focuses primarily on services, as the principles for interoperating services are quite mature 
-and stable. Note: A (micro-) service is an application, but not all applications are services. For example, a frontend 
-is not a service. Its requirements are fundamentally harder to meet because of aesthetic and user experience concerns. 
+This document focuses primarily on services, as the principles for interoperating services are quite mature
+and stable. Note: A (micro-) service is an application, but not all applications are services. For example, a frontend
+is not a service. Its requirements are fundamentally harder to meet because of aesthetic and user experience concerns.
 And the fast-moving set of technologies around the browser bring less maturity and more complexity.
 
 Starting from Scratch
@@ -49,21 +49,21 @@ by different teams while continuing to work. REST-like APIs with JSON payload is
 interfacing style in the internet web service industry.
 
 #### API First
-The [API Guild](https://tech.zalando.com/blog/on-apis-and-the-zalando-api-guild/) provides structure around the 
-details of our API strategy. In April 2016, Guild members released this comprehensive model set 
-of [RESTful API guidelines](http://zalando.github.io/restful-api-guidelines/), 
+The [API Guild](https://tech.zalando.com/blog/on-apis-and-the-zalando-api-guild/) provides structure around the
+details of our API strategy. In April 2016, Guild members released this comprehensive model set
+of [RESTful API guidelines](http://zalando.github.io/restful-api-guidelines/),
 which define standards to successfully establish “consistent API look and feel” quality.
 
-We also adopted ["API First"](https://zalando.github.io/restful-api-guidelines/general-guidelines/GeneralGuidelines.html) 
-and ["API as a Product"](https://zalando.github.io/restful-api-guidelines/design-principles/DesignPrinciples.html) 
-as key engineering principles. In a nutshell, API First encompasses a set of quality-related standards 
+We also adopted ["API First"](https://zalando.github.io/restful-api-guidelines/general-guidelines/GeneralGuidelines.html)
+and ["API as a Product"](https://zalando.github.io/restful-api-guidelines/design-principles/DesignPrinciples.html)
+as key engineering principles. In a nutshell, API First encompasses a set of quality-related standards
 (including the API guidelines and tooling) and fosters a peer review culture; it requires two aspects:
 
 - define APIs outside the code first using a standard specification language (Open API 2.0, fka Swagger)
 - get early review feedback from peers and client developers (following a lightweight [API review procedure](https://pages.github.bus.zalan.do/ApiGuild/ApiReviewProcedure/))
 
 ### How to structure your services
-Build services around business entities with state and behavior—for examples, “orders,” “payments,” or “prices.” In REST terms, these are “resources.”  
+Build services around business entities with state and behavior—for examples, “orders,” “payments,” or “prices.” In REST terms, these are “resources.”
 
 #### Service size
 A service should be big enough to offer a valid business capability, but small enough to be handled by a team that can be fed by two pizzas (Amazon’s Two-Pizza Team rule)—i.e., from two to 12 people. In practice, a Two-Pizza Team may be able to own and run a large number of small services, or a smaller number of larger services.
@@ -102,7 +102,7 @@ Build your services so that it’s possible to offer them as a SaaS solution to 
 We want to offers services in ways we never imagined or expected. This is part of being a platform. In some cases, this means being multi-tenant from the start.
 
 #### Security
-Always use SSL and make sure the caller of your service is authenticated and authorized. SSL actually means "HTTPS everywhere, not HTTP."  
+Always use SSL and make sure the caller of your service is authenticated and authorized. SSL actually means "HTTPS everywhere, not HTTP."
 
 ### General guidelines
 #### Stateless
@@ -214,3 +214,7 @@ Move legacy code to AWS whenever possible. Sometimes it will seem hard, but othe
 The authors love code. Building simple systems that work efficiently and quickly brings us joy. Seeing these systems interoperate cleanly and harmoniously gives us pleasure. We do this because we love it. If we didn’t have to work, we’d probably still do this. And we know we’re not alone.
 
 Building software systems can produce substantial existential pleasure. When the conditions are just right, programming is a reliable path to [Flow](https://en.wikipedia.org/wiki/Flow_%28psychology%29): a state almost beyond pleasure. We want to get there, and stay there, and we want you to join us there. We hope these principles help.
+
+### License
+
+We have published these guidelines under the [Creative Commons Attribution 4.0 (CC-BY)](LICENSE.txt) license.
