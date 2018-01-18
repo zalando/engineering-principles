@@ -1,7 +1,7 @@
-Zalando's Engineering and Architecture Principles
-=================================================
+# Zalando's Engineering and Architecture Principles
 
 #### The Principles, Briefly
+
 As part of [Radical Agility](https://jobs.zalando.com/tech/blog/so-youve-heard-about-radical-agility...-video/), implemented by Zalando's technology team in March 2015, we have adopted this set of principles for tech and architecture:
 - microservices
 - API First
@@ -14,8 +14,8 @@ and stable. Note: A (micro-) service is an application, but not all applications
 is not a service. Its requirements are fundamentally harder to meet because of aesthetic and user experience concerns.
 And the fast-moving set of technologies around the browser bring less maturity and more complexity.
 
-Starting from Scratch
-------------------------------------------------------------
+## Starting from Scratch
+
 We strive to build applications that are:
 - resilient
 - extensible
@@ -25,8 +25,8 @@ We strive to build applications that are:
 
 These properties lead to architectural principles that guide the choices we have to make.
 
-Architecture
-------------------------------------------------------------
+## Architecture
+
 We prefer loosely coupled services. They are more resilient when it comes to remote dependency failures. We aim to develop autonomous isolated services that can be independently deployed and that are centered around defined business capabilities.
 
 ### How to build a loosely-coupled system
