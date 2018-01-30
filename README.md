@@ -176,7 +176,7 @@ We support Stash and GitHub as SCM to check in your code. You might want to use 
 Document the architecture of your APIs and applications. Make it clear, concise, and current. Use inline documentation for more complex code fragments.
 
 #### Open Source
-We encourage an “[Open Source First](https://tech.zalando.com/blog/zalando-techs-new-open-source-principles/)” approach to software development. [Here](https://github.com/zalando/zalando-howto-open-source) is a detailed guide to open-sourcing projects at Zalando.
+We consider releasing projects as open source, if we think they could be useful outside Zalando. See ["How to Open Source at Zalando"](https://github.com/zalando/zalando-howto-open-source) for more details.
 
 ### Deployment
 #### Cloud vs. On-Premise
