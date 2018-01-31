@@ -179,18 +179,19 @@ Document the architecture of your APIs and applications. Make it clear, concise,
 We encourage an “[Open Source First](https://tech.zalando.com/blog/zalando-techs-new-open-source-principles/)” approach to software development. [Here](https://github.com/zalando/zalando-howto-open-source) is a detailed guide to open-sourcing projects at Zalando.
 
 ### Deployment
+
 #### Cloud vs. On-Premise
-We recommend using AWS for new projects to more easily take advantage of immutable instances, canary testing and autoscaling. It’s your call, though; we will continue to support our own infrastructure.
+AWS is our default choice for new projects, so that we can take full advantage of the flexibility and scalability of the cloud. We continue to run dedicated hardware for some special or legacy use cases.
 
 #### Docker
-Our deployment platform is Docker. [STUPS.io](http://stups.io/) ensures traceability of changes by using a standard way of deploying with Docker, and provides a convenient and audit-compliant Platform-as-a-Service (PaaS) for multiple autonomous teams on top of AWS.
+Our deployment tool of choice is Docker. Both our internal Platform-as-a-Service (PaaS) offerings are based on it:
 
-We know that Docker won’t last forever, and if you need to go beyond Docker, it’s possible. Have a good reason for going *off piste*, expect more work to make it happen, and don’t expect another team to support you.
+- [STUPS](http://stups.io/) provides a convenient and audit-compliant way to manage and configure a dedicated AWS account per team.
+
+- For new services, we recommend to use our Continuous Deployment Platform (CDP) in combination with our hosted [Kubernetes](https://kubernetes.io/) service.
 
 #### Monitoring and Logging
-We provide AppDynamics for every service. It includes monitoring as well as log management.
-
-We also use [ZMON](https://zmon.io/), our own open-source monitoring solution, to track business KPIs and other metrics.
+We use both [Scalyr](https://www.scalyr.com/) and [ZMON](https://zmon.io/), our open-source inhouse monitoring solution, to track business KPIs and other metrics.
 
 ### Managing legacy
 In transitioning to a microservices architecture, we must maintain and transform our legacy applications. Take following guidelines into account.
