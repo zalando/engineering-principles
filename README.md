@@ -121,23 +121,21 @@ In distributed systems, things fail in different ways. When a client sees a fail
 ### Development
 Some general guidelines for how we think a development team should work.
 
-#### Agile > Process
-We don’t care if you use Scrum, Kanban or any other form of agile process. Just be agile. Don’t focus on the process, focus on the outcome.
+#### Radical Agility
+The core of our software development approach is [Radical Agility](https://jobs.zalando.com/tech/blog/radical-agility-study-notes/), which is based on three main pillars: Autonomy, Mastery, and Purpose; all held together and bound by organizational trust. The aim is to allow engineers to get work done, while management gets out of the way.
 
-Unfortunately, some process is required to satisfy our audit requirements. Our goal is to keep this as minimal as possible. We have some off-the-shelf processes you can use, or you can invent your own. If you invent your own, you might have to explain it to an auditor at some point — so write it down.
+#### Agile > Process
+We don't care which agile collaboration process (Scrum, Kanban etc.) you follow. Don’t focus too much on the process, focus on the outcome! Unfortunately, a defined process is required to satisfy our audit requirements, but we like to keep it as minimal as possible.
 
 #### Projects
-When it comes to auditing, “projects” enable us to report what we do for tax purposes. Not many engineers are too interested in auditing, but getting this right can save a lot of money.
+We prefer that (almost) all work is done around some kind of conceptual “project.”
 
-We prefer that all or most work is done around some kind of conceptual “project.” A project should have some kind of purpose or goal. If it’s customer-facing, it should have some minimal business justification for why we are doing it. Assembling this information is typically the role of a product owner, but sometimes engineers need to do this themselves.
+A project should have a clear purpose or goal. If it’s customer-facing, it should have some minimal business justification for why we are doing it. Assembling this information is typically the role of a product owner, but sometimes engineers need to do this themselves.
 
-Having a first-class, cross-team notion of “project” is nice for a lot of reasons. It ultimately helps us to build automation that makes the overhead around auditing and controlling processes as minimal as possible.
-
+Having a first-class, cross-team notion of “project” is nice for a lot of reasons. It ultimately helps us to build automation that minimizes auditing and controlling overhead. It also helps us to report what we do for tax purposes -- and getting this right can save a lot of money.
 
 #### No Micromanagement
-If you feel like you’re being micromanaged, push back. We don’t do that here. On the other hand, it’s fine to ask for detailed support. When you ask for it, it’s not micromanagement, and sometimes it’s fine to ask. But it shouldn’t ever come as unwanted.
-
-The team—not the Delivery Lead—decides on who builds what and how it’s done.
+If you feel like you’re being micromanaged, push back. We don’t do that here. On the other hand, it’s fine to ask for detailed support -- but it shouldn’t ever come as unwanted. The team — not the Delivery Lead — decides on who builds what and how it’s done.
 
 #### Peer Review
 Don’t wait until you’re done to ask for code review: It’s the best way to catch defects early. Create a pull request at the start of your work, not at the end. This pulls people into an ongoing conversation about your code, from Day One.
