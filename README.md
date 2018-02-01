@@ -105,18 +105,15 @@ We want to offers services in ways we never imagined or expected. This is part o
 Always use SSL and make sure the caller of your service is authenticated and authorized. SSL actually means "HTTPS everywhere, not HTTP."
 
 ### General guidelines
+
 #### Stateless
-When possible, be stateless. If you can’t, keep state separate from application logic. For example, use a separate database instead of, say, writing to a file.
+When possible, be stateless. If you can’t, persist state outside the address space of the application, for example in a database.
 
 #### Immutable
-Strive for immutability whenever possible. This is a key concept from [Effective Java](http://www.amazon.com/Effective-Java-Edition-Joshua-Bloch/dp/0321356683), and languages like Scala and Clojure have stronger support for this than Java. (See [Does Scala == Effective Java?](http://www.grahamlea.com/2013/12/does-scala-equal-effective-java/))
-
-Immutability tends to result in fewer bugs and makes it easier to prove a program correct. Immutable things are automatically thread-safe, with no synchronization required.
+Strive for immutability whenever possible. An object is immutable if its state cannot be modified. Immutable things are automatically thread-safe, without requiring synchronization. Overall, immutability tends to result in fewer bugs and makes it easier to prove a program correct.
 
 #### Idempotent
-Whenever possible and reasonable, make service endpoints [idempotent](https://en.wikipedia.org/wiki/Idempotence#Computer_science_meaning) so that an operation produces the same results whether it’s executed just once or multiple times.
-
-In distributed systems, things fail in different ways. When a client sees a failure, it might be because the core call has failed; the failure might have occurred in the network late in the process. It’s helpful if a client can try again, even for stateful operations. This can have significant impacts: For example, it might mean that the client should generate a unique id when putting new data into a service endpoint, rather than relying on the service to do it. This might imply that the calling client needs to be able to [generate a UUID](https://www.npmjs.com/package/uuid).
+Whenever possible and reasonable, make service endpoints [idempotent](https://en.wikipedia.org/wiki/Idempotence#Computer_science_meaning), so that an operation produces the same result even when it’s executed multiple times. This allows clients to safely retry operations in case of (external) failures.
 
 ### Development
 Some general guidelines for how we think a development team should work.
