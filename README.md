@@ -60,19 +60,19 @@ and ["API as a Product"](https://zalando.github.io/restful-api-guidelines/design
 as key engineering principles. In a nutshell, API First encompasses a set of quality-related standards
 (including the API guidelines and tooling) and fosters a peer review culture; it requires two aspects:
 
-- define APIs outside the code first using a standard specification language (Open API 2.0, fka Swagger)
+- define APIs outside the code first using a standard specification language (Open API 2.0 / Swagger)
 - get early review feedback from peers and client developers (following a lightweight [API review procedure](https://pages.github.bus.zalan.do/ApiGuild/ApiReviewProcedure/))
 
 ### How to structure your services
-Build services around business entities with state and behavior—for examples, “orders,” “payments,” or “prices.” In REST terms, these are “resources.”
+Build services around business entities with state and behavior —- for example “orders”, “payments” or “prices”. In REST terms, these are “resources”.
 
 #### Service size
-A service should be big enough to offer a valid business capability, but small enough to be handled by a team that can be fed by two pizzas (Amazon’s Two-Pizza Team rule)—i.e., from two to 12 people. In practice, a Two-Pizza Team may be able to own and run a large number of small services, or a smaller number of larger services.
+A service should be big enough to offer a valid business capability, but small enough to be handled by a team that can be fed by two pizzas (Amazon’s Two-Pizza Team rule) -- from two to 12 people. In practice, a Two-Pizza Team may be able to own and run a large number of small services, or a smaller number of larger services.
 
 All things considered, we prefer smaller services written in expressive programming languages with minimal code whenever possible.
 
-#### Service Layers
-A service typically includes several layers of the tech stack—entrypoint, business logic and data storage—and offers a clean API as an integration point. Teams have a lot of freedom to choose the technology they use to create a service, though we have internal resources that provide structure to technology choices.
+#### Technology Selection
+A service typically includes several layers of the tech stack -— entrypoint, business logic and data storage -- and offers a clean API as an integration point. Teams have a lot of freedom to choose the best technologies for each layer. To balance innovation with economies of scale, we maintain the [Zalando Tech Radar](https://zalando.github.io/tech-radar/) as an internal tool for decision support and knowledge sharing.
 
 #### Autonomy
 A service:
@@ -80,15 +80,15 @@ A service:
 - should run in its own process and be independently deployable.
 - should start up and be resilient when its dependencies are not available.
 - should not share its data storage or code repository with any other service, so that changes do not affect other systems.
-should not share libraries with other services, unless those libraries are open-source. Shared internal dependencies lead to a large-scale complexity over time. We prefer to stop this practice immediately.
+- should not share libraries with other services, unless those libraries are open-source. Shared internal dependencies lead to a large-scale complexity over time. We prefer to stop this practice immediately.
 - should not provide a client library. The core API and its data model are expressed as REST and JSON.
 
 #### APIs
-Our APIs form the purest expression of what our systems do. But API design is hard work and takes time. We prefer peer-reviewed, API First APIs designed and developed outside code (using Swagger, for example), to avoid the complexity and cost of making big changes. We prefer ongoing documentation to be generated from the code itself.
+Our APIs form the purest expression of what our systems do. But API design is hard work and takes time. We prefer peer-reviewed APIs which are designed in an "API First" way and developed outside code (using Swagger, for example), to avoid the complexity and cost of making big changes. We prefer ongoing documentation to be generated from the code itself.
 
 Our APIs need to last for a long time, so they must evolve in certain ways. Our APIs should all be similar in tone; we establish and agree to standards for how to do this. We will host API documentation for all our APIs in a central, searchable place. Documentation should always provide examples.
 
-Our APIs should obey [Postel's Law—aka "the Robustness Principle"](https://en.wikipedia.org/wiki/Robustness_principle): Be conservative in what you send, be liberal in what you accept.
+Our APIs should obey [Postel's Law -— a.k.a. "the Robustness Principle"](https://en.wikipedia.org/wiki/Robustness_principle): Be conservative in what you send, be liberal in what you accept.
 
 #### Some Good Reads:
 - [RESTful API Guidelines](https://zalando.github.io/restful-api-guidelines/TOC.html) by Zalando's API Guild
