@@ -31,7 +31,7 @@ We prefer loosely coupled services. They are more resilient when it comes to rem
 
 ### How to build a loosely-coupled system
 
-#### Event-Based Integration
+#### Asynchronous Communication
 Synchronous calls to remote systems can lead to threads in waiting state until the call times out. This can completely paralyze a system, as more and more threads move into that state until the system can no longer react to new requests. Further synchronous calls are blocking and prevent the thread from doing anything else.
 
 We reduce the impact of remote failures by communicating asynchronously via events, where possible. Microservices publish streams of events to an [event broker](https://github.com/zalando/nakadi), which interested microservices consume asynchronously. Communication with other systems becomes non-blocking: even when some functionality is affected temporarily, the system continues working.
@@ -60,13 +60,12 @@ and ["API as a Product"](https://zalando.github.io/restful-api-guidelines/design
 as key engineering principles. In a nutshell, API First encompasses a set of quality-related standards
 (including the API guidelines and tooling) and fosters a peer review culture; it requires two aspects:
 
-- define APIs outside the code first using a standard specification language (Open API 2.0 / Swagger)
+- define APIs outside the code first using a standard specification language (Open API 2.0)
 - get early review feedback from peers and client developers (following a lightweight [API review procedure](https://pages.github.bus.zalan.do/ApiGuild/ApiReviewProcedure/))
 
-### How to structure your services
-Build services around business entities with state and behavior —- for example “orders”, “payments” or “prices”. In REST terms, these are “resources”.
+#### Microservice Size
+Build services based on domain model and around business entities with state and behavior —- for example “orders”, “payments” or “prices”. In REST terms, these are “resources”.
 
-#### Service size
 A service should be big enough to offer a valid business capability, but small enough to be handled by a team that can be fed by two pizzas (Amazon’s Two-Pizza Team rule) -- from two to 12 people. In practice, a Two-Pizza Team may be able to own and run a large number of small services, or a smaller number of larger services.
 
 All things considered, we prefer smaller services written in expressive programming languages with minimal code whenever possible.
@@ -84,11 +83,11 @@ A service:
 - should not provide a client library. The core API and its data model are expressed as REST and JSON.
 
 #### APIs
-Our APIs form the purest expression of what our systems do. But API design is hard work and takes time. We prefer peer-reviewed APIs which are designed in an "API First" way and developed outside code (using Swagger, for example), to avoid the complexity and cost of making big changes. We prefer ongoing documentation to be generated from the code itself.
+Our APIs form the purest expression of what our systems do. But API design is hard work and takes time. We prefer peer-reviewed APIs which are designed in an "API First" way and developed outside code (using OpenAPI, for example), to avoid the complexity and cost of making big changes. We prefer ongoing documentation to be generated from the code itself.
 
 Our APIs need to last for a long time, so they must evolve in certain ways. Our APIs should all be similar in tone; we establish and agree to standards for how to do this. We will host API documentation for all our APIs in a central, searchable place. Documentation should always provide examples.
 
-Our APIs should obey [Postel's Law -— a.k.a. "the Robustness Principle"](https://en.wikipedia.org/wiki/Robustness_principle): Be conservative in what you send, be liberal in what you accept.
+Our APIs should obey [Postel's Law -— a.k.a. "the Robustness Principle"](https://en.wikipedia.org/wiki/Robustness_principle): Be conservative in what you send, be liberal in what you accept. APIs must be evolved without breaking any consumersF(.
 
 #### Some Good Reads:
 - [RESTful API Guidelines](https://zalando.github.io/restful-api-guidelines/TOC.html) by Zalando's API Guild
@@ -114,7 +113,7 @@ When possible, be stateless. If you can’t, persist state outside the address s
 Strive for immutability whenever possible. An object is immutable if its state cannot be modified. Immutable things are automatically thread-safe, without requiring synchronization. Overall, immutability tends to result in fewer bugs and makes it easier to prove a program correct.
 
 #### Idempotent
-Whenever possible and reasonable, make service endpoints [idempotent](https://en.wikipedia.org/wiki/Idempotence#Computer_science_meaning), so that an operation produces the same result even when it’s executed multiple times. This allows clients to safely retry operations in case of (external) failures.
+Whenever possible and reasonable, make service endpoints [idempotent](https://en.wikipedia.org/wiki/Idempotence#Computer_science_meaning), so that an operation produces the same result even when it’s executed multiple times. This allows clients to safely retry operations in case of timeouts due to service processing or network failures.
 
 ### Development
 Some general guidelines for how we think a development team should work.
@@ -123,7 +122,7 @@ Some general guidelines for how we think a development team should work.
 The core of our software development approach is [Radical Agility](https://jobs.zalando.com/tech/blog/radical-agility-study-notes/), which is based on three main pillars: Autonomy, Mastery, and Purpose; all held together and bound by organizational trust. The aim is to allow engineers to get work done, while management gets out of the way.
 
 #### Agile > Process
-We don't care which agile collaboration process (Scrum, Kanban etc.) you follow. Don’t focus too much on the process, focus on the outcome! Unfortunately, a defined process is required to satisfy our audit requirements, but we like to keep it as minimal as possible.
+We don't care which agile collaboration process (Scrum, Kanban etc.) you follow. Don’t focus too much on the process, focus on the outcome! Unfortunately, a defined process is required to satisfy our company audit requirements, but we like to keep it as minimal as possible.
 
 #### Projects
 We prefer that (almost) all work is done around some kind of conceptual “project.”
@@ -177,14 +176,14 @@ We encourage an “[Open Source First](https://tech.zalando.com/blog/zalando-tec
 ### Deployment
 
 #### Cloud vs. On-Premise
-AWS is our default choice for new projects, so that we can take full advantage of the flexibility and scalability of the cloud. We continue to run dedicated hardware for some special or legacy use cases.
+AWS is our default choice for new projects, so that we can take full advantage of the flexibility and scalability of the cloud and its rich set of integrated services. We continue to run dedicated hardware (both on premise and in partner data centers) for some special or legacy use cases.
 
 #### Docker
-Our deployment tool of choice is Docker. Both our internal Platform-as-a-Service (PaaS) offerings are based on it:
-
-- [STUPS](http://stups.io/) provides a convenient and audit-compliant way to manage and configure a dedicated AWS account per team.
+We favour containerised application development and our current deployment tool of choice is Docker. Both our internal Platform-as-a-Service (PaaS) offerings are based on it:
 
 - For new services, we recommend to use our Continuous Deployment Platform (CDP) in combination with our hosted [Kubernetes](https://kubernetes.io/) service.
+
+- Many existing services use [STUPS](http://stups.io/), which provides a convenient and audit-compliant way to manage and configure a dedicated AWS account per team.
 
 #### Monitoring and Logging
 We use both [Scalyr](https://www.scalyr.com/) and [ZMON](https://zmon.io/), our open-source inhouse monitoring solution, to track business KPIs and other metrics.
