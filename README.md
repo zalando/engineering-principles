@@ -30,13 +30,16 @@ These properties lead to architectural principles that guide the choices we have
 We prefer loosely coupled services. They are more resilient when it comes to remote dependency failures. We aim to develop autonomous isolated services that can be independently deployed and that are centered around defined business capabilities.
 
 ### How to build a loosely-coupled system
-#### Asynchronous communication
-Synchronous calls to remote systems can lead to threads in waiting state until the call times out. This can completely paralyze a system, as more and more threads move into that state until the system can no longer react to new requests. Further, synchronous calls are blocking and prevent the thread from doing anything else.
 
-We reduce the impact of remote failures by calling them asynchronously. We achieve this by choosing an **event-driven architecture** based on queues (typically wrapped by REST interfaces). Communication with other systems becomes non-blocking. While functionality might be compromised, the system continues working.
+#### Asynchronous Communication
+Synchronous calls to remote systems can lead to threads in waiting state until the call times out. This can completely paralyze a system, as more and more threads move into that state until the system can no longer react to new requests. Further synchronous calls are blocking and prevent the thread from doing anything else.
+
+We reduce the impact of remote failures by communicating asynchronously via events, where possible. Microservices publish streams of events to an [event broker](https://github.com/zalando/nakadi), which interested microservices consume asynchronously. Communication with other systems becomes non-blocking: even when some functionality is affected temporarily, the system continues working.
 
 #### Service Degradation
-We react to remote dependency failures by degrading a service until the remote dependency is working again. This means that your system must be aware of remote dependency health. It needs to detect failure and also notice when an external dependency becomes healthy again.
+In synchronous calls, we react to remote dependency failures by degrading a service until the remote dependency is working again. This means that your system must be aware of remote dependency health. It needs to detect failure and also notice when an external dependency becomes healthy again.
+
+In asynchronous processing scenarios, you usually have more flexibility in processing service delivery time. Hence, you can live with temporary remote failures and delay processing with retries. However, service degradation is also an option here, if otherwise processing delays due to remote failures are not acceptable.
 
 #### Use Low-Tech Coupling
 Low-tech coupling reduces issues resulting from changes in communicating systems, and can reduce complexity and dependencies. An example of low-tech coupling is service discovery via DNS. Communication should be done over interoperable protocols like HTTP instead of, for example, RMI.
@@ -59,19 +62,18 @@ and ["API as a Product"](https://zalando.github.io/restful-api-guidelines/design
 as key engineering principles. In a nutshell, API First encompasses a set of quality-related standards
 (including the API guidelines and tooling) and fosters a peer review culture; it requires two aspects:
 
-- define APIs outside the code first using a standard specification language (Open API 2.0, fka Swagger)
+- define APIs outside the code first using a standard specification language (Open API 2.0)
 - get early review feedback from peers and client developers (following a lightweight [API review procedure](https://pages.github.bus.zalan.do/ApiGuild/ApiReviewProcedure/))
 
-### How to structure your services
-Build services around business entities with state and behavior—for examples, “orders,” “payments,” or “prices.” In REST terms, these are “resources.”
+#### Microservice Size
+Build services based on domain model and around business entities with state and behavior —- for example “orders”, “payments” or “prices”. In REST terms, these are “resources”.
 
-#### Service size
-A service should be big enough to offer a valid business capability, but small enough to be handled by a team that can be fed by two pizzas (Amazon’s Two-Pizza Team rule)—i.e., from two to 12 people. In practice, a Two-Pizza Team may be able to own and run a large number of small services, or a smaller number of larger services.
+A service should be big enough to offer a valid business capability, but small enough to be handled by a team that can be fed by two pizzas (Amazon’s Two-Pizza Team rule) -- from two to 12 people. In practice, a Two-Pizza Team may be able to own and run a large number of small services, or a smaller number of larger services.
 
 All things considered, we prefer smaller services written in expressive programming languages with minimal code whenever possible.
 
-#### Service Layers
-A service typically includes several layers of the tech stack—entrypoint, business logic and data storage—and offers a clean API as an integration point. Teams have a lot of freedom to choose the technology they use to create a service, though we have internal resources that provide structure to technology choices.
+#### Technology Selection
+A service typically includes several layers of the tech stack -— entrypoint, business logic and data storage -- and offers a clean API as an integration point. Teams have a lot of freedom to choose the best technologies for each layer. To balance innovation with economies of scale, we maintain the [Zalando Tech Radar](https://zalando.github.io/tech-radar/) as an internal tool for decision support and knowledge sharing.
 
 #### Autonomy
 A service:
@@ -79,15 +81,15 @@ A service:
 - should run in its own process and be independently deployable.
 - should start up and be resilient when its dependencies are not available.
 - should not share its data storage or code repository with any other service, so that changes do not affect other systems.
-should not share libraries with other services, unless those libraries are open-source. Shared internal dependencies lead to a large-scale complexity over time. We prefer to stop this practice immediately.
+- should not share libraries with other services, unless those libraries are open-source. Shared internal dependencies lead to a large-scale complexity over time. We prefer to stop this practice immediately.
 - should not provide a client library. The core API and its data model are expressed as REST and JSON.
 
 #### APIs
-Our APIs form the purest expression of what our systems do. But API design is hard work and takes time. We prefer peer-reviewed, API First APIs designed and developed outside code (using Swagger, for example), to avoid the complexity and cost of making big changes. We prefer ongoing documentation to be generated from the code itself.
+Our APIs form the purest expression of what our systems do. But API design is hard work and takes time. We prefer peer-reviewed APIs which are designed in an "API First" way and developed outside code (using OpenAPI, for example), to avoid the complexity and cost of making big changes. We prefer ongoing documentation to be generated from the code itself.
 
 Our APIs need to last for a long time, so they must evolve in certain ways. Our APIs should all be similar in tone; we establish and agree to standards for how to do this. We will host API documentation for all our APIs in a central, searchable place. Documentation should always provide examples.
 
-Our APIs should obey [Postel's Law—aka "the Robustness Principle"](https://en.wikipedia.org/wiki/Robustness_principle): Be conservative in what you send, be liberal in what you accept.
+Our APIs should obey [Postel's Law -— a.k.a. "the Robustness Principle"](https://en.wikipedia.org/wiki/Robustness_principle): Be conservative in what you send, be liberal in what you accept. APIs must be evolved without breaking any consumersF(.
 
 #### Some Good Reads:
 - [RESTful API Guidelines](https://zalando.github.io/restful-api-guidelines/TOC.html) by Zalando's API Guild
@@ -105,39 +107,34 @@ We want to offers services in ways we never imagined or expected. This is part o
 Always use SSL and make sure the caller of your service is authenticated and authorized. SSL actually means "HTTPS everywhere, not HTTP."
 
 ### General guidelines
+
 #### Stateless
-When possible, be stateless. If you can’t, keep state separate from application logic. For example, use a separate database instead of, say, writing to a file.
+When possible, be stateless. If you can’t, persist state outside the address space of the application, for example in a database.
 
 #### Immutable
-Strive for immutability whenever possible. This is a key concept from [Effective Java](http://www.amazon.com/Effective-Java-Edition-Joshua-Bloch/dp/0321356683), and languages like Scala and Clojure have stronger support for this than Java. (See [Does Scala == Effective Java?](http://www.grahamlea.com/2013/12/does-scala-equal-effective-java/))
-
-Immutability tends to result in fewer bugs and makes it easier to prove a program correct. Immutable things are automatically thread-safe, with no synchronization required.
+Strive for immutability whenever possible. An object is immutable if its state cannot be modified. Immutable things are automatically thread-safe, without requiring synchronization. Overall, immutability tends to result in fewer bugs and makes it easier to prove a program correct.
 
 #### Idempotent
-Whenever possible and reasonable, make service endpoints [idempotent](https://en.wikipedia.org/wiki/Idempotence#Computer_science_meaning) so that an operation produces the same results whether it’s executed just once or multiple times.
-
-In distributed systems, things fail in different ways. When a client sees a failure, it might be because the core call has failed; the failure might have occurred in the network late in the process. It’s helpful if a client can try again, even for stateful operations. This can have significant impacts: For example, it might mean that the client should generate a unique id when putting new data into a service endpoint, rather than relying on the service to do it. This might imply that the calling client needs to be able to [generate a UUID](https://www.npmjs.com/package/uuid).
+Whenever possible and reasonable, make service endpoints [idempotent](https://en.wikipedia.org/wiki/Idempotence#Computer_science_meaning), so that an operation produces the same result even when it’s executed multiple times. This allows clients to safely retry operations in case of timeouts due to service processing or network failures.
 
 ### Development
 Some general guidelines for how we think a development team should work.
 
-#### Agile > Process
-We don’t care if you use Scrum, Kanban or any other form of agile process. Just be agile. Don’t focus on the process, focus on the outcome.
+#### Radical Agility
+The core of our software development approach is [Radical Agility](https://jobs.zalando.com/tech/blog/radical-agility-study-notes/), which is based on three main pillars: Autonomy, Mastery, and Purpose; all held together and bound by organizational trust. The aim is to allow engineers to get work done, while management gets out of the way.
 
-Unfortunately, some process is required to satisfy our audit requirements. Our goal is to keep this as minimal as possible. We have some off-the-shelf processes you can use, or you can invent your own. If you invent your own, you might have to explain it to an auditor at some point — so write it down.
+#### Agile > Process
+We don't care which agile collaboration process (Scrum, Kanban etc.) you follow. Don’t focus too much on the process, focus on the outcome! Unfortunately, a defined process is required to satisfy our company audit requirements, but we like to keep it as minimal as possible.
 
 #### Projects
-When it comes to auditing, “projects” enable us to report what we do for tax purposes. Not many engineers are too interested in auditing, but getting this right can save a lot of money.
+We prefer that (almost) all work is done around some kind of conceptual “project.”
 
-We prefer that all or most work is done around some kind of conceptual “project.” A project should have some kind of purpose or goal. If it’s customer-facing, it should have some minimal business justification for why we are doing it. Assembling this information is typically the role of a product owner, but sometimes engineers need to do this themselves.
+A project should have a clear purpose or goal. If it’s customer-facing, it should have some minimal business justification for why we are doing it. Assembling this information is typically the role of a product owner, but sometimes engineers need to do this themselves.
 
-Having a first-class, cross-team notion of “project” is nice for a lot of reasons. It ultimately helps us to build automation that makes the overhead around auditing and controlling processes as minimal as possible.
-
+Having a first-class, cross-team notion of “project” is nice for a lot of reasons. It ultimately helps us to build automation that minimizes auditing and controlling overhead. It also helps us to report what we do for tax purposes -- and getting this right can save a lot of money.
 
 #### No Micromanagement
-If you feel like you’re being micromanaged, push back. We don’t do that here. On the other hand, it’s fine to ask for detailed support. When you ask for it, it’s not micromanagement, and sometimes it’s fine to ask. But it shouldn’t ever come as unwanted.
-
-The team—not the Delivery Lead—decides on who builds what and how it’s done.
+If you feel like you’re being micromanaged, push back. We don’t do that here. On the other hand, it’s fine to ask for detailed support -- but it shouldn’t ever come as unwanted. The team — not the Delivery Lead — decides on who builds what and how it’s done.
 
 #### Peer Review
 Don’t wait until you’re done to ask for code review: It’s the best way to catch defects early. Create a pull request at the start of your work, not at the end. This pulls people into an ongoing conversation about your code, from Day One.
@@ -176,21 +173,22 @@ We support Stash and GitHub as SCM to check in your code. You might want to use 
 Document the architecture of your APIs and applications. Make it clear, concise, and current. Use inline documentation for more complex code fragments.
 
 #### Open Source
-We encourage an “[Open Source First](https://tech.zalando.com/blog/zalando-techs-new-open-source-principles/)” approach to software development. [Here](https://github.com/zalando/zalando-howto-open-source) is a detailed guide to open-sourcing projects at Zalando.
+Zalando's strategy has evolved from “Open Source All The Things!” to a focus on mastery, and a commitment to not just releasing code but building communities around open source. Open Source is a way of working and thinking that pushes forward not just great code but a great set of values and ways of collaborating that we believe are enormously engaging and powerful, and we strive to use them for the benefit of all. [Here](https://github.com/zalando/zalando-howto-open-source) is a detailed guide to open-sourcing projects at Zalando.
 
 ### Deployment
+
 #### Cloud vs. On-Premise
-We recommend using AWS for new projects to more easily take advantage of immutable instances, canary testing and autoscaling. It’s your call, though; we will continue to support our own infrastructure.
+AWS is our default choice for new projects, so that we can take full advantage of the flexibility and scalability of the cloud and its rich set of integrated services. We continue to run dedicated hardware (both on premise and in partner data centers) for some special or legacy use cases.
 
 #### Docker
-Our deployment platform is Docker. [STUPS.io](http://stups.io/) ensures traceability of changes by using a standard way of deploying with Docker, and provides a convenient and audit-compliant Platform-as-a-Service (PaaS) for multiple autonomous teams on top of AWS.
+We favour containerised application development and our current deployment tool of choice is Docker. Both our internal Platform-as-a-Service (PaaS) offerings are based on it:
 
-We know that Docker won’t last forever, and if you need to go beyond Docker, it’s possible. Have a good reason for going *off piste*, expect more work to make it happen, and don’t expect another team to support you.
+- For new services, we recommend to use our Continuous Deployment Platform (CDP) in combination with our hosted [Kubernetes](https://kubernetes.io/) service.
+
+- Many existing services use [STUPS](http://stups.io/), which provides a convenient and audit-compliant way to manage and configure a dedicated AWS account per team.
 
 #### Monitoring and Logging
-We provide AppDynamics for every service. It includes monitoring as well as log management.
-
-We also use [ZMON](https://zmon.io/), our own open-source monitoring solution, to track business KPIs and other metrics.
+We use both [Scalyr](https://www.scalyr.com/) and [ZMON](https://zmon.io/), our open-source inhouse monitoring solution, to track business KPIs and other metrics.
 
 ### Managing legacy
 In transitioning to a microservices architecture, we must maintain and transform our legacy applications. Take following guidelines into account.
