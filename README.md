@@ -1,7 +1,7 @@
 # Zalando's Engineering and Architecture Principles
 
-**This repository is deprecated. The below principles were introduced in 2015 and no longer reflect the current reality (2020) in all aspects.
-To learn more about our current practices, please follow our Engineering Blog on https://engineering.zalando.com/ **
+ℹ️ **This repository is deprecated.** The below principles were introduced in 2015 and no longer reflect the current reality (2020) in all aspects.
+To learn more about our current practices, please follow our Engineering Blog on https://engineering.zalando.com/
 
 #### The Principles, Briefly
 
