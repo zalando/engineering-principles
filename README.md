@@ -1,5 +1,8 @@
 # Zalando's Engineering and Architecture Principles
 
+**This repository is deprecated. The below principles were introduced in 2015 and no longer reflect the current reality (2020) in all aspects.
+To learn more about our current practices, please follow our Engineering Blog on https://engineering.zalando.com/ **
+
 #### The Principles, Briefly
 
 As part of [Radical Agility](https://jobs.zalando.com/tech/blog/so-youve-heard-about-radical-agility...-video/), implemented by Zalando's technology team in March 2015, we have adopted this set of principles for tech and architecture:
