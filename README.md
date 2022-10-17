@@ -5,7 +5,7 @@ To learn more about our current practices, please follow our Engineering Blog on
 
 #### The Principles, Briefly
 
-As part of [Radical Agility](https://jobs.zalando.com/tech/blog/so-youve-heard-about-radical-agility...-video/), implemented by Zalando's technology team in March 2015, we have adopted this set of principles for tech and architecture:
+In March 2015, we have adopted this set of principles for tech and architecture:
 - microservices
 - API First
 - REST
@@ -55,18 +55,18 @@ by different teams while continuing to work. REST-like APIs with JSON payload is
 interfacing style in the internet web service industry.
 
 #### API First
-The [API Guild](https://tech.zalando.com/blog/on-apis-and-the-zalando-api-guild/) provides structure around the
+The [API Guild](https://engineering.zalando.com/posts/2015/09/on-apis-and-the-zalando-api-guild.html) provides structure around the
 details of our API strategy. In April 2016, Guild members released this comprehensive model set
-of [RESTful API guidelines](http://zalando.github.io/restful-api-guidelines/),
+of [RESTful API guidelines](https://opensource.zalando.com/restful-api-guidelines/),
 which define standards to successfully establish “consistent API look and feel” quality.
 
-We also adopted ["API First"](https://zalando.github.io/restful-api-guidelines/general-guidelines/GeneralGuidelines.html)
-and ["API as a Product"](https://zalando.github.io/restful-api-guidelines/design-principles/DesignPrinciples.html)
+We also adopted ["API First"](https://opensource.zalando.com/restful-api-guidelines/index.html#general-guidelines)
+and ["API as a Product"](https://opensource.zalando.com/restful-api-guidelines/index.html#principles)
 as key engineering principles. In a nutshell, API First encompasses a set of quality-related standards
 (including the API guidelines and tooling) and fosters a peer review culture; it requires two aspects:
 
 - define APIs outside the code first using a standard specification language (Open API 2.0)
-- get early review feedback from peers and client developers (following a lightweight [API review procedure](https://pages.github.bus.zalan.do/ApiGuild/ApiReviewProcedure/))
+- get early review feedback from peers and client developers (following a lightweight API review procedure)
 
 #### Microservice Size
 Build services based on domain model and around business entities with state and behavior —- for example “orders”, “payments” or “prices”. In REST terms, these are “resources”.
@@ -76,7 +76,7 @@ A service should be big enough to offer a valid business capability, but small e
 All things considered, we prefer smaller services written in expressive programming languages with minimal code whenever possible.
 
 #### Technology Selection
-A service typically includes several layers of the tech stack -— entrypoint, business logic and data storage -- and offers a clean API as an integration point. Teams have a lot of freedom to choose the best technologies for each layer. To balance innovation with economies of scale, we maintain the [Zalando Tech Radar](https://zalando.github.io/tech-radar/) as an internal tool for decision support and knowledge sharing.
+A service typically includes several layers of the tech stack -— entrypoint, business logic and data storage -- and offers a clean API as an integration point. Teams have a lot of freedom to choose the best technologies for each layer. To balance innovation with economies of scale, we maintain the [Zalando Tech Radar](https://opensource.zalando.com/tech-radar/) as an internal tool for decision support and knowledge sharing.
 
 #### Autonomy
 A service:
@@ -84,8 +84,8 @@ A service:
 - should run in its own process and be independently deployable.
 - should start up and be resilient when its dependencies are not available.
 - should not share its data storage or code repository with any other service, so that changes do not affect other systems.
-- should not share libraries with other services, unless those libraries are open-source. Shared internal dependencies lead to a large-scale complexity over time. We prefer to stop this practice immediately.
-- should not provide a client library. The core API and its data model are expressed as REST and JSON.
+- should not share libraries with other services, unless those libraries are open-source or inner-source and are actively maintained by a community. Shared dependencies may lead to a large-scale complexity over time.
+- should not provide a client library containing business logic. The core API and its data model are expressed as REST and JSON.
 
 #### APIs
 Our APIs form the purest expression of what our systems do. But API design is hard work and takes time. We prefer peer-reviewed APIs which are designed in an "API First" way and developed outside code (using OpenAPI, for example), to avoid the complexity and cost of making big changes. We prefer ongoing documentation to be generated from the code itself.
@@ -95,7 +95,7 @@ Our APIs need to last for a long time, so they must evolve in certain ways. Our 
 Our APIs should obey [Postel's Law -— a.k.a. "the Robustness Principle"](https://en.wikipedia.org/wiki/Robustness_principle): Be conservative in what you send, be liberal in what you accept. APIs must be evolved without breaking any consumers.
 
 #### Some Good Reads:
-- [RESTful API Guidelines](https://zalando.github.io/restful-api-guidelines/TOC.html) by Zalando's API Guild
+- [RESTful API Guidelines](https://opensource.zalando.com/restful-api-guidelines/index.html#table-of-contents) by Zalando's API Guild
 - [Architectural Styles and the Design of Network-based Software Architectures](https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm)
 - [InfoQ eMag: Web APIs: From Start to Finish](https://www.infoq.com/minibooks/emag-web-api)
 - [Thoughts on RESTful API Design](https://restful-api-design.readthedocs.org/en/latest/)
@@ -123,11 +123,8 @@ Whenever possible and reasonable, make service endpoints [idempotent](https://en
 ### Development
 Some general guidelines for how we think a development team should work.
 
-#### Radical Agility
-The core of our software development approach is [Radical Agility](https://jobs.zalando.com/tech/blog/radical-agility-study-notes/), which is based on three main pillars: Autonomy, Mastery, and Purpose; all held together and bound by organizational trust. The aim is to allow engineers to get work done, while management gets out of the way.
-
 #### Agile > Process
-We don't care which agile collaboration process (Scrum, Kanban etc.) you follow. Don’t focus too much on the process, focus on the outcome! Unfortunately, a defined process is required to satisfy our company audit requirements, but we like to keep it as minimal as possible.
+We don't mind which agile collaboration process (Scrum, Kanban etc.) you follow. Don’t focus too much on the process, focus on the outcome! Unfortunately, a defined process is required to satisfy our company audit requirements, but we like to keep it as minimal as possible.
 
 #### Projects
 We prefer that (almost) all work is done around some kind of conceptual “project.”
@@ -167,10 +164,10 @@ Years ago, we didn’t build systems this way. Now we must. Fortunately, the too
 #### Continuous Delivery
 Strive for very short release cycles, optimally deploying daily; automating the delivery pipeline makes this possible. Small releases tend to have fewer bugs. Use canary testing for your new deployments to identify problems early.
 
-Best practices for Continuous Delivery and Jenkins-as-a-Service are available for voluntary usage.
+Best practices for Continuous Delivery and CI/CD-as-a-Service are available for all teams.
 
 #### Source Code Management
-We support Stash and GitHub as SCM to check in your code. You might want to use local git hooks for checking references to specifications in commit messages or checks.
+We support GitHub as SCM to check in your code. You might want to use local git hooks for checking references to specifications in commit messages or checks.
 
 #### Documentation
 Document the architecture of your APIs and applications. Make it clear, concise, and current. Use inline documentation for more complex code fragments.
@@ -184,31 +181,11 @@ Zalando's strategy has evolved from “Open Source All The Things!” to a focus
 AWS is our default choice for new projects, so that we can take full advantage of the flexibility and scalability of the cloud and its rich set of integrated services. We continue to run dedicated hardware (both on premise and in partner data centers) for some special or legacy use cases.
 
 #### Docker
-We favour containerised application development and our current deployment tool of choice is Docker. Both our internal Platform-as-a-Service (PaaS) offerings are based on it:
-
-- For new services, we recommend to use our Continuous Deployment Platform (CDP) in combination with our hosted [Kubernetes](https://kubernetes.io/) service.
-
-- Many existing services use [STUPS](http://stups.io/), which provides a convenient and audit-compliant way to manage and configure a dedicated AWS account per team.
+We favour containerised application development and our current deployment tool of choice is Docker.
+We use our Continuous Deployment Platform (CDP) in combination with our hosted [Kubernetes](https://kubernetes.io/) service.
 
 #### Monitoring and Logging
-We use both [Scalyr](https://www.scalyr.com/) and [ZMON](https://zmon.io/), our open-source inhouse monitoring solution, to track business KPIs and other metrics.
-
-### Managing legacy
-In transitioning to a microservices architecture, we must maintain and transform our legacy applications. Take following guidelines into account.
-
-#### Reduce focus on sprocs
-Sprocs are stored procedures. For us they have been a crucial component for scaling PostgreSQL horizontally. They are not, however, the right solution for every database problem.
-
-Sprocs bring a lot of power, but also introduce a lot of complexity—particularly around testing, maintainability, refactoring, and transparency. Sometimes this is worth it, particularly when we have to shard. But this approach should be used only if circumstances genuinely warrant it.
-
-#### New functionality becomes a new service
-When introducing new functionality, think of designing it as a new service instead of adding it to an existing legacy application. This allows you to leverage new technologies.
-
-#### Wrap it with Docker
-Use Docker to package your application. STUPS.io will help you to deploy your Docker images to the existing infrastructure.
-
-#### Migration to AWS
-Move legacy code to AWS whenever possible. Sometimes it will seem hard, but others here have done it. Ask for help.
+We use both [Scalyr](https://www.scalyr.com/) and [ZMON](https://github.com/zalando/zmon), our open-source inhouse monitoring solution, to track business KPIs and other metrics. We use distributed tracing to analyze incidents and performance issues in our microservice infrastructure.
 
 ### Closing Words
 #### The Joy of Programming
